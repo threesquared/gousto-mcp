@@ -1,6 +1,6 @@
 # gousto-mcp
 
-> MCP server for Gousto recipes
+> A MCP server for Gousto recipes
 
 ## Description
 

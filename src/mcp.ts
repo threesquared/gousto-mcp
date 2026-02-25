@@ -5,15 +5,17 @@ import { searchRecipes, getRecipe } from "./lib/gousto";
 export function createMcpServer(): McpServer {
   const server = new McpServer({
     name: "gousto-recipes",
+    description: "A MCP server for Gousto recipes",
     version: "1.0.0",
   });
 
   server.registerTool(
     "search_recipes",
     {
-      description: "Search for recipes by title",
+      description:
+        "Search for Gousto recipes by title, returns a list of recipes with their UID. Do not return the UUID to the user, only use it to call the get_recipe tool.",
       inputSchema: z.object({
-        query: z.string().describe("The query to search for"),
+        query: z.string().describe("The query to search recipes for"),
       }),
     },
     async ({ query }) => {
@@ -46,9 +48,9 @@ export function createMcpServer(): McpServer {
   server.registerTool(
     "get_recipe",
     {
-      description: "Get a recipe by its UID",
+      description: "Get a Gousto recipe's full details by its UID",
       inputSchema: z.object({
-        uid: z.string().describe("The UID of the recipe to get"),
+        uid: z.string().describe("The UID of the Gousto recipe to get"),
       }),
     },
     async ({ uid }) => {
