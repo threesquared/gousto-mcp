@@ -1,0 +1,30 @@
+{
+  "name": "gousto-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Gousto recipes",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "scrape": "tsx cli/scraper.ts",
+    "test": "tsx --test tests/server.test.ts",
+    "lint": "prettier --check .",
+    "inspect": "npx @modelcontextprotocol/inspector",
+    "deploy": "docker buildx build --push --platform linux/arm64/v8,linux/amd64 --tag threesquared/gousto-mcp:latest ."
+  },
+  "author": "Ben Speakman",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "express": "^5.2.1",
+    "fuse.js": "^7.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.3.0",
+    "prettier": "3.8.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.9.3"
+  }
+}
