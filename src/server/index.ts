@@ -6,6 +6,11 @@ export function createApp() {
   const app = express();
   app.use(express.json());
 
+  app.use((req, _res, next) => {
+    console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
+    next();
+  });
+
   const sseServer = new SSEServer(app);
   const streamableServer = new StreamableServer(app);
 

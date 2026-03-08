@@ -1,4 +1,6 @@
 import { createApp } from "./server";
+import { closeDb } from "./lib/db";
+import { disposeEmbedder } from "./lib/embeddings";
 
 const PORT = parseInt(process.env.PORT ?? "3000", 10);
 const { app, shutdown } = createApp();
@@ -15,6 +17,8 @@ app.listen(PORT, (error?: Error) => {
 process.on("SIGINT", async () => {
   console.log("Shutting down server...");
   await shutdown();
+  await disposeEmbedder();
+  closeDb();
   console.log("Server shutdown complete");
   process.exit(0);
 });

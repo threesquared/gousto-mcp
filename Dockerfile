@@ -18,7 +18,7 @@ RUN npm ci --omit=dev
 
 COPY --from=builder /app/dist ./dist
 COPY data ./data
-RUN test -f data/recipes.json || (echo "ERROR: data/recipes.json not found. Run the scraper first." && exit 1)
+RUN test -f data/recipes.db || (echo "ERROR: data/recipes.db not found. Run 'npm run scrape && npm run embed' first." && exit 1)
 
 ENV PORT=3000
 EXPOSE ${PORT}

@@ -19,7 +19,7 @@ export function createMcpServer(): McpServer {
       }),
     },
     async ({ query }) => {
-      const recipes = searchRecipes(query);
+      const recipes = await searchRecipes(query);
 
       if (!recipes.length) {
         return {
