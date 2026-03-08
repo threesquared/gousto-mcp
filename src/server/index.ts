@@ -2,6 +2,7 @@ import express from "express";
 import SSEServer from "./sse";
 import StreamableServer from "./streamable";
 
+// Create the Express app
 export function createApp() {
   const app = express();
   app.use(express.json());
